@@ -1,0 +1,17 @@
+{
+  "name": "ts-09112017",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc:v": "tsc -v"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1"
+  }
+}
