@@ -129,7 +129,7 @@ window.onload = (event: Event) => {
       body.removeChild(body.firstElementChild as HTMLElement);
     }
 
-    const errDiv: HTMLDivElement = document.createElement('div');
+    const errDiv: HTMLDivElement = document.createElement('div') as HTMLDivElement;
     errDiv.appendChild(document.createTextNode(error.message));
     errDiv.className = 'error-msg';
     body.appendChild(errDiv);
