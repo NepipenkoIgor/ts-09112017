@@ -78,7 +78,25 @@ var createMenuItem = function (data, target) {
 };
 window.onload = function (event) {
     try {
-        createMenuItem([menu], document.getElementById('menu'));
+        var target = document.getElementById('menu');
+        createMenuItem([menu], target);
+        target.addEventListener('click', function (event) {
+            var target = event.target;
+            if (target.className === ANCHOR_CLASS) {
+                var parent_1 = target.parentNode;
+                var className = parent_1.className;
+                if (className !== LIF_CLASS) {
+                    parent_1.className = className.split(' ').indexOf(OPEN_BRANCH_CLASS) >= 0
+                        ?
+                            BRANCH_CLASS + " " + CLOSED_BRANCH_CLASS
+                        :
+                            BRANCH_CLASS + " " + OPEN_BRANCH_CLASS;
+                }
+            }
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }, false);
     }
     catch (error) {
         var body = document.body;

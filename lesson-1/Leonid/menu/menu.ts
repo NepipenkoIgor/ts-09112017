@@ -98,7 +98,30 @@ const createMenuItem = (data: MenuItem[], target: HTMLElement): void => {
 
 window.onload = (event: Event) => {
   try {
-    createMenuItem([menu], document.getElementById('menu') as HTMLElement);
+    const target: HTMLElement = document.getElementById('menu') as HTMLElement;
+    createMenuItem([menu], target);
+
+    target.addEventListener('click', (event: MouseEvent): boolean => {
+      const target: HTMLElement = event.target as HTMLElement;
+
+      if (target.className === ANCHOR_CLASS) {
+        const parent: HTMLElement = target.parentNode as HTMLElement;
+
+        const className: string = parent.className;
+
+        if (className !== LIF_CLASS) {
+          parent.className = className.split(' ').indexOf(OPEN_BRANCH_CLASS) >= 0
+            ?
+            `${BRANCH_CLASS} ${CLOSED_BRANCH_CLASS}`
+            :
+            `${BRANCH_CLASS} ${OPEN_BRANCH_CLASS}`;
+        }
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    }, false);
   } catch (error) {
     const body: HTMLBodyElement = document.body as HTMLBodyElement;
 
