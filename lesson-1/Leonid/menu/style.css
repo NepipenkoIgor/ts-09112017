@@ -15,20 +15,21 @@
     float: left;
     content:"";
     display: block;
-    margin-top: 5px; 
-    margin-right: -5px; 
+    margin-top: 5px;
 }
 
 #menu li.open>a.anchor:before {
-    border-top: 10px solid transparent; 
-    border-right: 10px solid transparent; 
-    border-left: 10px solid green; 
+    border-top: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 10px solid green;
+    margin-right: -5px;
 }
 
 #menu li.closed>a.anchor:before {
-    border-top: 10px solid green; 
-    border-right: 10px solid transparent; 
-    border-left: 10px solid transparent; 
+    border-top: 10px solid green;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    margin-right: 2px;
 }
 
 #menu li.closed>ul {
