@@ -41,6 +41,7 @@ var OPEN_BRANCH_CLASS = 'open';
 var CLOSED_BRANCH_CLASS = 'closed';
 var LIF_CLASS = 'lif';
 var ANCHOR_CLASS = 'anchor';
+var ERROR_CLASS = 'error-msg';
 var createMenuItem = function (data, target) {
     /* В реальном проекте меню скорее всего будет приходить из неконтролируемого нами источника (с бека),
      * поэтому вот мое первое разочарование в TipeScript: интерфейс нас никак не защищает от некорретных данных,
@@ -104,8 +105,10 @@ window.onload = function (event) {
             body.removeChild(body.firstElementChild);
         }
         var errDiv = document.createElement('div');
-        errDiv.appendChild(document.createTextNode(error.message));
-        errDiv.className = 'error-msg';
+        var dataDiv = document.createElement('div');
+        dataDiv.appendChild(document.createTextNode(error.message));
+        errDiv.appendChild(dataDiv);
+        errDiv.className = ERROR_CLASS;
         body.appendChild(errDiv);
     }
 };

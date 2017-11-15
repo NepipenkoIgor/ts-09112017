@@ -47,6 +47,7 @@ const OPEN_BRANCH_CLASS: string = 'open';
 const CLOSED_BRANCH_CLASS: string = 'closed';
 const LIF_CLASS: string = 'lif';
 const ANCHOR_CLASS: string = 'anchor';
+const ERROR_CLASS: string = 'error-msg';
 
 const createMenuItem = (data: MenuItem[], target: HTMLElement): void => {
   /* В реальном проекте меню скорее всего будет приходить из неконтролируемого нами источника (с бека),
@@ -130,8 +131,10 @@ window.onload = (event: Event) => {
     }
 
     const errDiv: HTMLDivElement = document.createElement('div') as HTMLDivElement;
-    errDiv.appendChild(document.createTextNode(error.message));
-    errDiv.className = 'error-msg';
+    const dataDiv: HTMLDivElement = document.createElement('div') as HTMLDivElement;
+    dataDiv.appendChild(document.createTextNode(error.message));
+    errDiv.appendChild(dataDiv);
+    errDiv.className = ERROR_CLASS;
     body.appendChild(errDiv);
   }
 };
