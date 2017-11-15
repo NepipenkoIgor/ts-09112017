@@ -1,0 +1,114 @@
+interface MenuItem {
+  title: string;
+  items?: MenuItem[];
+}
+
+const menu: MenuItem = {
+  title: 'Животные',
+  items: [
+    {
+      title: 'Млекопитающие',
+      items: [
+        { title: 'Коровы' },
+        { title: 'Ослы' },
+        { title: 'Собаки' },
+        { title: 'Тигры' }
+      ]
+    },
+    {
+      title: 'Рыбы', items: [
+        {
+          title: 'Аквариумные',
+          items: [
+            { title: 'Гуппи' },
+            { title: 'Скалярии' }
+          ]
+        },
+        {
+        title: 'Форель',
+        items: [
+          { title: 'Морская форель'}
+        ]
+        },
+      ]
+    },
+    {
+      title: 'Другие', items: [
+        { title: 'Змеи' },
+        { title: 'Птицы' },
+        { title: 'Ящерицы' },
+      ],
+    }
+  ]
+};
+
+const BRANCH_CLASS: string = 'branch';
+const OPEN_BRANCH_CLASS: string = 'open';
+const CLOSED_BRANCH_CLASS: string = 'closed';
+const LIF_CLASS: string = 'lif';
+const ANCHOR_CLASS: string = 'anchor';
+
+const createMenuItem = (data: MenuItem[], target: HTMLElement): void => {
+  /* В реальном проекте меню скорее всего будет приходить из неконтролируемого нами источника (с бека),
+   * поэтому вот мое первое разочарование в TipeScript: интерфейс нас никак не защищает от некорретных данных,
+   * и мы всеравно вынуждены писать проверку формата данных и реакцию на несоответсвие формата ожиданию.
+   * Вот только теперь мы не можем написать тесты, проверяющие, что мы правильно реагируем на неверный формат.
+   */
+
+   if (!Array.isArray(data)) {
+     throw new Error('Изначально неверный формат данных');
+   };
+
+   const ul: HTMLUListElement = document.createElement('ul') as HTMLUListElement;
+
+   const fragment: DocumentFragment = data.reduce((frag: DocumentFragment, { title, items = [] }: MenuItem) => {
+    if (typeof title !== 'string') {
+      throw new Error('Неверный формат заголовка');
+    }
+
+    if (!Array.isArray(items)) {
+      throw new Error('Свойство items не является массивом');
+    }
+
+    const { length } = items;
+
+    const li: HTMLLIElement = document.createElement('li') as HTMLLIElement;
+    li.className = length > 0 ? `${BRANCH_CLASS} ${OPEN_BRANCH_CLASS}` : LIF_CLASS;
+
+    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+    a.className = ANCHOR_CLASS;
+    a.appendChild(document.createTextNode(title));
+
+    li.appendChild(a);
+
+    if (length > 0) {
+      createMenuItem(items, li);
+    }
+
+    frag.appendChild(li);
+
+     return frag;
+   }, document.createDocumentFragment() as DocumentFragment) as DocumentFragment;
+
+   ul.appendChild(fragment);
+
+   target.appendChild(ul);
+};
+
+
+window.onload = (event: Event) => {
+  try {
+    createMenuItem([menu], document.getElementById('menu') as HTMLElement);
+  } catch (error) {
+    const body: HTMLBodyElement = document.body as HTMLBodyElement;
+
+    while (body.childElementCount > 0) {
+      body.removeChild(body.firstElementChild as HTMLElement);
+    }
+
+    const errDiv: HTMLDivElement = document.createElement('div');
+    errDiv.appendChild(document.createTextNode(error.message));
+    errDiv.className = 'error-msg';
+    body.appendChild(errDiv);
+  }
+};
