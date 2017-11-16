@@ -1,31 +1,67 @@
 "use strict";
 var menuList = [
-    { title: 'JavaScript', items: ['React', 'Angular', 'Cycle.js'] },
-    { title: 'Dart', items: ['Flutter', 'Angular', 'Polymer'] },
+    {
+        title: 'Животные',
+        items: [
+            {
+                title: 'Млекопитающие',
+                items: [
+                    { title: 'Коровы' },
+                    { title: 'Ослы' },
+                    { title: 'Собаки' },
+                    { title: 'Тигры' }
+                ]
+            },
+            {
+                title: 'Другие',
+                items: [
+                    { title: 'Змеи' },
+                    { title: 'Птицы' },
+                    { title: 'Ящерицы' },
+                ],
+            },
+        ]
+    },
+    {
+        title: 'Рыбы',
+        items: [
+            {
+                title: 'Аквариумные',
+                items: [
+                    { title: 'Гуппи' },
+                    { title: 'Скалярии' }
+                ]
+            },
+            {
+                title: 'Форель',
+                items: [
+                    { title: 'Морская форель' }
+                ]
+            },
+        ]
+    }
 ];
 function generateMenu(list) {
-    var content = "<ul>";
+    var output = '<ul>';
     for (var _i = 0, list_1 = list; _i < list_1.length; _i++) {
-        var a = list_1[_i];
-        content += "<li><a class='title'>" + a.title + "</a><ul>";
-        for (var _a = 0, _b = a.items; _a < _b.length; _a++) {
-            var item = _b[_a];
-            content += "<li><a >" + item + "</a></li>";
+        var item = list_1[_i];
+        output += "<li><a class=\"title\">" + item.title + "</a>";
+        if (Array.isArray(item.items)) {
+            output += generateMenu(item.items);
         }
-        content += "</li></ul>";
+        output += '</li>';
     }
-    content += "</ul>";
-    return content;
+    output += '</ul>';
+    return output;
 }
-var navMenuList = document.querySelector('.menu');
-navMenuList.innerHTML = generateMenu(menuList);
-navMenuList.onclick = function (ev) {
-    var el = ev.target;
+var navMenu = document.querySelector('.menu');
+navMenu.innerHTML = generateMenu(menuList);
+navMenu.onclick = function (e) {
+    var el = e.target;
     var classlist = el.classList;
-    if (!classlist.contains('title')) {
+    if (!classlist.contains("title")) {
         return;
     }
     var parentLi = el.parentNode;
-    parentLi.classList.toggle('menu-open');
+    parentLi.classList.toggle("menu-open");
 };
-//# sourceMappingURL=menu.js.map
