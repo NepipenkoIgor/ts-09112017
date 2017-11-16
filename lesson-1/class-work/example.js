@@ -131,4 +131,3 @@
 // }
 //type g = { x: g };
 //var g: { x: typeof g } 
-//# sourceMappingURL=example.js.map
