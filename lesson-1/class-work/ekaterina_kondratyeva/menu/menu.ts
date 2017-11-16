@@ -58,7 +58,7 @@ function generateMenu(list: MenuList): string {
         ${
             list.map((item) => {
                 return `<li>
-                    <a class="${`items` in item ? `title` : ``}">${item.title}</a>
+                    <a class="${`items` in item ? `title js-title` : ``}">${item.title}</a>
                     ${`items` in item ? generateMenu(item.items): ``}
                 </li>`
             }).join(``)
@@ -66,14 +66,15 @@ function generateMenu(list: MenuList): string {
     </ul>`;
 }
 
+function addEventHandlers(items: NodeList): void {
+    for (let i = 0; i < items.length; i++) {
+        items[i].addEventListener('click', (e) => {
+           ((e.target as HTMLElement).parentNode as HTMLElement).classList.toggle('menu-open')
+        });
+    }
+}
+
 let navMenuList = document.querySelector(".menu") as HTMLDivElement;
 navMenuList.innerHTML = generateMenu(menuList);
-navMenuList.onclick = (ev: MouseEvent) => {
-    const el = ev.target as HTMLAnchorElement;
-    const classlist = el.classList;
-    if (!classlist.contains("title")) {
-        return;
-    }
-    const parentLi = el.parentNode as HTMLLIElement;
-    parentLi.classList.toggle("menu-open");
-};
+let menuItems = document.querySelectorAll('.js-title');
+addEventHandlers(menuItems);
