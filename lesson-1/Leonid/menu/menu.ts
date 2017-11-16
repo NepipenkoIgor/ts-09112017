@@ -9,7 +9,11 @@ const menu: MenuItem = {
     {
       title: 'Млекопитающие',
       items: [
-        { title: 'Коровы' },
+        {
+          title: 'Коровы', items: [{
+            title: ' some'
+          }]
+        },
         { title: 'Ослы' },
         { title: 'Собаки' },
         { title: 'Тигры' }
@@ -25,10 +29,10 @@ const menu: MenuItem = {
           ]
         },
         {
-        title: 'Форель',
-        items: [
-          { title: 'Морская форель'}
-        ]
+          title: 'Форель',
+          items: [
+            { title: 'Морская форель' }
+          ]
         },
       ]
     },
@@ -56,13 +60,13 @@ const createMenuItem = (data: MenuItem[], target: HTMLElement): void => {
    * Вот только теперь мы не можем написать тесты, проверяющие, что мы правильно реагируем на неверный формат.
    */
 
-   if (!Array.isArray(data)) {
-     throw new Error('Изначально неверный формат данных');
-   };
+  if (!Array.isArray(data)) {
+    throw new Error('Изначально неверный формат данных');
+  };
 
-   const ul: HTMLUListElement = document.createElement('ul') as HTMLUListElement;
+  const ul: HTMLUListElement = document.createElement('ul') as HTMLUListElement;
 
-   const fragment: DocumentFragment = data.reduce((frag: DocumentFragment, { title, items = [] }: MenuItem) => {
+  const fragment: DocumentFragment = data.reduce((frag: DocumentFragment, { title, items = [] }: MenuItem) => {
     if (typeof title !== 'string') {
       throw new Error('Неверный формат заголовка');
     }
@@ -74,7 +78,9 @@ const createMenuItem = (data: MenuItem[], target: HTMLElement): void => {
     const { length } = items;
 
     const li: HTMLLIElement = document.createElement('li') as HTMLLIElement;
-    li.className = length > 0 ? `${BRANCH_CLASS} ${OPEN_BRANCH_CLASS}` : LIF_CLASS;
+    li.className = length > 0
+      ? `${BRANCH_CLASS} ${OPEN_BRANCH_CLASS}`
+      : LIF_CLASS;
 
     const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
     a.className = ANCHOR_CLASS;
@@ -88,12 +94,12 @@ const createMenuItem = (data: MenuItem[], target: HTMLElement): void => {
 
     frag.appendChild(li);
 
-     return frag;
-   }, document.createDocumentFragment() as DocumentFragment) as DocumentFragment;
+    return frag;
+  }, document.createDocumentFragment() as DocumentFragment) as DocumentFragment;
 
-   ul.appendChild(fragment);
+  ul.appendChild(fragment);
 
-   target.appendChild(ul);
+  target.appendChild(ul);
 };
 
 
@@ -104,23 +110,23 @@ window.onload = (event: Event) => {
 
     target.addEventListener('click', (event: MouseEvent): boolean => {
       const target: HTMLElement = event.target as HTMLElement;
-
-      if (target.className === ANCHOR_CLASS) {
-        const parent: HTMLElement = target.parentNode as HTMLElement;
-
-        const className: string = parent.className;
-
-        if (className !== LIF_CLASS) {
-          parent.className = className.split(' ').indexOf(OPEN_BRANCH_CLASS) >= 0
-            ?
-            `${BRANCH_CLASS} ${CLOSED_BRANCH_CLASS}`
-            :
-            `${BRANCH_CLASS} ${OPEN_BRANCH_CLASS}`;
-        }
-      }
-
       event.preventDefault();
       event.stopPropagation();
+      if (target.className !== ANCHOR_CLASS) {
+        return false
+      }
+      const parent: HTMLElement = target.parentNode as HTMLElement;
+
+      const className: string = parent.className;
+
+      if (className !== LIF_CLASS) {
+        parent.className = className.split(' ').indexOf(OPEN_BRANCH_CLASS) >= 0
+          ?
+          `${BRANCH_CLASS} ${CLOSED_BRANCH_CLASS}`
+          :
+          `${BRANCH_CLASS} ${OPEN_BRANCH_CLASS}`;
+      }
+      
       return false;
     }, false);
   } catch (error) {
