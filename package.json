@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc:v": "tsc -v"
+    "tsc:v": "tsc -v",
+    "tsc:leonid_1": "tsc ./lesson-1/Leonid/menu/menu.ts"
   },
   "keywords": [],
   "author": "",
