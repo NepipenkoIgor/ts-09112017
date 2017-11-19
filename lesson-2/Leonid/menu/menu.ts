@@ -97,9 +97,12 @@ class Menu extends MenuGenerator {
 
             this.toogle(input.value);
 
-            event.preventDefault();
-            event.stopPropagation();
-            event.cancelBubble = true;
+            try {
+              event.preventDefault();
+              event.stopPropagation();
+            } catch (e) {
+              event.cancelBubble = true;
+            }
             return false;
         }, false);
 
@@ -112,9 +115,12 @@ class Menu extends MenuGenerator {
 
             this.open(input.value);
 
-            event.preventDefault();
-            event.stopPropagation();
-            event.cancelBubble = true;
+            try {
+              event.preventDefault();
+              event.stopPropagation();
+            } catch (e) {
+              event.cancelBubble = true;
+            }
             return false;
         }, false);
 
@@ -127,9 +133,12 @@ class Menu extends MenuGenerator {
 
             this.close(input.value);
 
-            event.preventDefault();
-            event.stopPropagation();
-            event.cancelBubble = true;
+            try {
+              event.preventDefault();
+              event.stopPropagation();
+            } catch (e) {
+              event.cancelBubble = true;
+            }
             return false;
         }, false);
     }
