@@ -1,4 +1,4 @@
-const isString (value: any): value is string => typeof value === 'string';
+const isString = (value: any): value is string => typeof value === 'string';
 
 type ns = number | string;
 /*
