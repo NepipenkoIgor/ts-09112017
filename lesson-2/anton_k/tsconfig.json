@@ -1,7 +1,8 @@
 {
     "extends": "../../tsconfig.json",
     "include": [
-        "./menu/*.ts"  
+        "./*.ts",
+        "./menu/*.ts"
       ],
     "exclude": [
         "../class-work/*.ts"
