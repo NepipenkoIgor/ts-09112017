@@ -1,0 +1,48 @@
+.menu li {
+    cursor: pointer;
+    list-style-type: none;
+}
+.menu li a{
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+.menu li a:hover{
+    font-weight: 600;
+}
+
+.menu li.menu-open>a.title:before {
+    float: left;
+    content:"";
+    display: block;
+    border-top: 5px solid green; 
+    border-right: 5px solid transparent; 
+    border-left: 5px solid transparent; 
+    border-bottom: 5px solid transparent;
+    margin-top: 5px; 
+    margin-right: 5px; 
+}
+.menu li a.title:before {
+    float: left;
+    content:"";
+    display: block;
+    border-top: 5px solid transparent; 
+    border-right: 5px solid transparent; 
+    border-left: 5px solid green; 
+    border-bottom: 5px solid transparent;
+    margin-top: 5px; 
+    margin-right: 5px; 
+}
+.menu>ul>li>div {
+    display: none
+}
+.menu>ul>.menu-open>div {
+    display: block
+}
+
+/* .submenu>ul>li>div {
+    display: none
+}
+.submenu>ul>.menu-open>div {
+    display: block
+} */
