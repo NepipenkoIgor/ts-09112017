@@ -1,27 +1,25 @@
 .menu li {
-    cursor: pointer;
-    list-style-type: disc;
+  list-style-type: none;
 }
+
 .menu li a {
     display: block;
     cursor: pointer;
     -webkit-user-select: none;
 }
+
 .menu li a:hover {
     font-weight: 600;
 }
 
-.menu .menu-open ul {
+li > ul {
     display: block;
 }
-
-.menu ul li ul {
+li.closed > ul {
     display: none;
 }
 
-
-/*
-.menu li.menu-open > a.title:before {
+li > a.title:before {
     float: left;
     content: '';
     display: block;
@@ -32,7 +30,7 @@
     margin-right: 5px;
 }
 
-.menu li a.title:before {
+li a.title:before {
     float: left;
     content: '';
     display: block;
@@ -42,4 +40,3 @@
     margin-top: 5px;
     margin-right: 5px;
 }
-*/
