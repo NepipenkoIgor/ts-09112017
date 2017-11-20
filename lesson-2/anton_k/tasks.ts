@@ -4,10 +4,10 @@
 // Возвращает true, если все аргументы, кроме первого входят в первый.
 // Первым всегда должен быть массив.
 
-function isInArray(arr: any[], ...vars: any[]): boolean {
-    for(let i = 0; i < vars.length; i ++) {
+export function isInArray(arr: any[], ...vars: any[]): boolean {
+    for (let i = 0; i < vars.length; i++) {
         let v = vars[i];
-        if(arr.indexOf(v) === -1) return false;
+        if (arr.indexOf(v) === -1) return false;
     }
     return true;
 }
@@ -19,15 +19,15 @@ function isInArray(arr: any[], ...vars: any[]): boolean {
 
 type numstr = number | string;
 
-function getNumValue(val: numstr): number {
-    if(typeof val === 'number') return val;
+export function getNumValue(val: numstr): number {
+    if (typeof val === 'number') return val;
     return parseInt(val);
 }
 
-function summator(...arr: numstr[]): number {
+export function summator(...arr: numstr[]): number {
     let res: numstr = 0;
 
-    res = arr.reduce(function(res: numstr, val: numstr): number {
+    res = arr.reduce(function (res: numstr, val: numstr): number {
         return getNumValue(res) + getNumValue(val);
     });
 
@@ -45,10 +45,11 @@ function getUnique(...vars: any[]): any[] {
 
     let res: any[] = [];
 
-    for(let v of vars) {
-        if(res.indexOf(v) === -1) {
-            res.push(v);
+    for (let v of vars) {
+        if (res.indexOf(v) !== -1) {
+            continue;
         }
+        res.push(v);
     }
 
     return res;
@@ -64,43 +65,43 @@ function getUnique(...vars: any[]): any[] {
 
 
 function swapLetters(str: string): string {
-    
-        let res: string = '';
-        let pos: number = 0;
-        let nonSwapped: string = '0123456789~!@#$%^&*()[]/';
 
-        let arr: string[] = str.split( /[\.!\?,\t:;\s]+/g );
+    let res: string = '';
+    let pos: number = 0;
+    let nonSwapped: string = '0123456789~!@#$%^&*()[]/';
 
-        for(let s of arr) {
-            let posOfWord = str.indexOf(s, pos);
+    let arr: string[] = str.split(/[\.!\?,\t:;\s]+/g);
 
-            res += str.substring(pos, posOfWord);
+    for (let s of arr) {
+        let posOfWord = str.indexOf(s, pos);
 
-            let letters: string[] = s.split('');
-            let lettersResult: string[] = letters.slice();
+        res += str.substring(pos, posOfWord);
 
-            let i = 0;
-            let iReverse = lettersResult.length - 1;
-            for(; i < lettersResult.length && iReverse >= 0; i ++) {
-                if(nonSwapped.indexOf(lettersResult[i], 0) === -1) {
-                    while(nonSwapped.indexOf(letters[iReverse], 0) !== -1 && iReverse >= 0) {
-                        iReverse --;
-                    }
-                    if(iReverse >= 0) {
-                        lettersResult[i] = letters[iReverse];
-                    }
-                    iReverse --;
+        let letters: string[] = s.split('');
+        let lettersResult: string[] = letters.slice();
+
+        let i = 0;
+        let iReverse = lettersResult.length - 1;
+        for (; i < lettersResult.length && iReverse >= 0; i++) {
+            if (nonSwapped.indexOf(lettersResult[i], 0) === -1) {
+                while (nonSwapped.indexOf(letters[iReverse], 0) !== -1 && iReverse >= 0) {
+                    iReverse--;
                 }
+                if (iReverse >= 0) {
+                    lettersResult[i] = letters[iReverse];
+                }
+                iReverse--;
             }
-
-            res += lettersResult.reduce((s: string, n: string): string => s += n);
-
-            pos = posOfWord + s.length;
         }
-    
-        return res;
+
+        res += lettersResult.reduce((s: string, n: string): string => s += n);
+
+        pos = posOfWord + s.length;
     }
-    
+
+    return res;
+}
+
 
 /////////////////////////////////////////////////////////////////////////////
 // TESTS for TASK 1

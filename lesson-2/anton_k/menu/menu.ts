@@ -107,13 +107,13 @@ class Menu extends MenuGenerator {
     public getElem(): HTMLElement {
         return this._element;
     }
-    
+
     public getElemByTitle(title: string): HTMLElement | null {
         let arr: NodeListOf<HTMLElement> = this._element.querySelectorAll('a');
-        for(let i = 0; i < arr.length; i ++) {
-            let textElem = arr[i].firstChild; 
-            if(textElem !== null) {
-                if(textElem.nodeValue === title) {
+        for (let i = 0; i < arr.length; i++) {
+            let textElem = arr[i].firstChild;
+            if (textElem !== null) {
+                if (textElem.nodeValue === title) {
                     return textElem.parentElement;
                 }
             }
@@ -124,12 +124,12 @@ class Menu extends MenuGenerator {
     public toggleNode(menuTitle: string): void {
         let node = this.getElemByTitle(menuTitle);
 
-        if(node !== null) {
+        if (node !== null) {
             let classList = node.classList;
             if (!classList.contains('title')) {
                 return;
             }
-    
+
             let parent: HTMLLIElement = node.parentNode as HTMLLIElement;
             parent.classList.toggle('menu-open');
         }
@@ -138,12 +138,12 @@ class Menu extends MenuGenerator {
     public closeNode(menuTitle: string): void {
         let node = this.getElemByTitle(menuTitle);
 
-        if(node !== null) {
+        if (node !== null) {
             let classList = node.classList;
             if (!classList.contains('title')) {
                 return;
             }
-    
+
             let parent: HTMLLIElement = node.parentNode as HTMLLIElement;
             parent.classList.remove('menu-open');
         }
@@ -152,19 +152,19 @@ class Menu extends MenuGenerator {
     public openNode(menuTitle: string): void {
         let node = this.getElemByTitle(menuTitle);
 
-        if(node !== null) {
+        if (node !== null) {
             let classList = node.classList;
             if (!classList.contains('title')) {
                 return;
             }
-    
+
             let parent: HTMLElement | null = node.parentNode as HTMLElement;
-            while(parent) {
-                if(parent.nodeName === 'LI') {
+            while (parent) {
+                if (parent.nodeName === 'LI') {
                     parent.classList.add('menu-open');
                 }
-                  
-                parent = parent.parentElement;          
+
+                parent = parent.parentElement;
             }
         }
     }

@@ -6,9 +6,9 @@ const LEAD_HEIGT: number = 0;
 const SLIDER_HEIGHT: number = 20;
 const SLIDER_WIDTH: number = 0;
 
-const PERIOD:number = 40;
+const PERIOD: number = 40;
 
-function throttle (callback: (...rest: any[]) => any, ms: number): (...rest: any[]) => void {
+function throttle(callback: (...rest: any[]) => any, ms: number): (...rest: any[]) => void {
 
   let timeout: number = null;
   let args: any[] = null;
@@ -29,7 +29,7 @@ function throttle (callback: (...rest: any[]) => any, ms: number): (...rest: any
   }
 };
 
-class Slider  {
+class Slider {
   private _target: HTMLElement;
   private _lead: HTMLElement;
   private _slider: HTMLElement;
@@ -40,7 +40,7 @@ class Slider  {
   private _slider_dx: number;
   private _slider_width: number;
 
-  constructor (target: HTMLElement) {
+  constructor(target: HTMLElement) {
     this._target = target;
 
     /*
@@ -55,7 +55,7 @@ class Slider  {
     this._initSlider();
   }
 
-  private _getSliderWidth (): number {
+  private _getSliderWidth(): number {
     if (!this._slider) {
       return 0;
     }
@@ -66,7 +66,7 @@ class Slider  {
     return width || right - left;
   }
 
-  private _initLead (): void {
+  private _initLead(): void {
     this._lead = document.createElement('div') as HTMLElement;
     this._lead.className = LEAD_CLASS;
 
@@ -87,7 +87,7 @@ class Slider  {
     this._maxRight = right - this._getSliderWidth();
   }
 
-  private _initSlider (): void {
+  private _initSlider(): void {
     this._slider = document.createElement('div') as HTMLElement;
     this._slider.className = SLIDER_CLASS;
 
@@ -98,7 +98,7 @@ class Slider  {
     style.left = '0';
     style.top = `${(LEAD_HEIGT - SLIDER_HEIGHT) / 2}px`;
 
-    this._slider.addEventListener('mousedown',this._onMouseDown, false);
+    this._slider.addEventListener('mousedown', this._onMouseDown, false);
 
     if (this._lead) {
       this._lead.appendChild(this._slider);
@@ -106,8 +106,8 @@ class Slider  {
     }
   }
 
-  private _onMouseDown (event: MouseEvent):boolean {
-    document.addEventListener('mousemove',this._onMouseMove, false);
+  private _onMouseDown(event: MouseEvent): boolean {
+    document.addEventListener('mousemove', this._onMouseMove, false);
     this._slider.removeEventListener('mousedown', this._onMouseDown, false);
     document.addEventListener('mouseup', this._onMouseUp, false);
 
@@ -125,7 +125,7 @@ class Slider  {
     return false;
   }
 
-  private _onMouseUp (event: MouseEvent): boolean {
+  private _onMouseUp(event: MouseEvent): boolean {
     document.removeEventListener('mousemove', this._onMouseMove, false);
     document.removeEventListener('mouseup', this._onMouseUp, false);
     this._slider.addEventListener('mousedown', this._onMouseDown, false);
@@ -139,7 +139,7 @@ class Slider  {
     return false;
   }
 
-  private _onMouseMove (event: MouseEvent): boolean {
+  private _onMouseMove(event: MouseEvent): boolean {
     let absX: number = event.clientX - this._slider_dx;
 
     if (absX < this._minLeft) {
