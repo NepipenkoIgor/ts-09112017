@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:m": "nyc mocha -r ts-node/register lesson-3/**/*.spec.ts",
+    "test:k": "karma start",
+    "dev:w": "webpack-dev-server -w --progress --colors",
     "tsc:v": "tsc -v",
     "tsc:leonid_1": "tsc ./lesson-1/Leonid/menu/menu.ts"
   },
@@ -12,7 +14,54 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/redux": "^3.6.0",
+    "axios": "^0.17.1",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-observable": "^0.17.0",
+    "rxjs": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.5",
+    "@types/jasmine": "^2.8.2",
+    "@types/mocha": "^2.2.44",
+    "@types/react": "^16.0.25",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.13",
+    "awesome-typescript-loader": "^3.4.0",
+    "chai": "^4.1.2",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "jasmine-core": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-typescript": "^3.0.8",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "style-loader": "^0.19.0",
+    "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "nyc": {
+    "exclude": [
+      "lesson-3/**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text",
+      "text-summary"
+    ]
   }
 }

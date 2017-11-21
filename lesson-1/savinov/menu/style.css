@@ -1,0 +1,42 @@
+.menu li {
+  list-style-type: none;
+}
+
+.menu li a {
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+
+.menu li a:hover {
+    font-weight: 600;
+}
+
+li > ul {
+    display: block;
+}
+li.closed > ul {
+    display: none;
+}
+
+li > a.title:before {
+    float: left;
+    content: '';
+    display: block;
+    border-top: 5px solid transparent;
+    border-right: 5px solid green;
+    border-left: 5px solid transparent;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+li a.title:before {
+    float: left;
+    content: '';
+    display: block;
+    border-top: 5px solid green;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    margin-top: 5px;
+    margin-right: 5px;
+}

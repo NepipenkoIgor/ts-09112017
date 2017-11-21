@@ -1,0 +1,12 @@
+{
+    "extends": "../../tsconfig.json",
+    "include": [
+        "./menu/*.ts"  
+      ],
+    "exclude": [
+        "../class-work/*.ts"
+    ],
+    "compilerOptions": {
+        "sourceMap": false
+    }
+}

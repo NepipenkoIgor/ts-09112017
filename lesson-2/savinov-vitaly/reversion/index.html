@@ -1,0 +1,20 @@
+<html lang='en'>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel='stylesheet' href='style.css'>
+        <title>Разворот</title>
+    </head>
+    <body>
+        <h1>Vitaly Savinov</h1>
+        <p>Написать функцию котороя будет разворачивать буквы в словах предложения, но только лишь буквы
+        цифры и специальные символы должны остаться на месте</p>
+        <form name="reverse">
+            <input type='text' name='source' size='32' maxlength='32'> -> 
+            <input type='text' name='result' size='32' maxlength='32' readonly>
+            <br /><br />
+            <input id='button' type='button' value=" Перевернуть " onClick="this.form.result.value = reverseIt(this.form.source.value);">
+        </form>
+        
+        <script src='./reversion.js'></script>
+    </body>
+</html>
