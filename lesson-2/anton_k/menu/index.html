@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Menu-on-class</title>
+</head>
+<body>
+    <input id='menu-title' type="text"></input>
+    <button onClick="openNode();">Open</button>
+    <button onClick="closeNode();">Close</button>
+    <button onClick="toggleNode();">Toggle</button>
+
+    <nav class="menu">
+    </nav>
+    <script src="menu.js"></script>
+    <script>
+        'use strict';
+        var menuNode = document.querySelector('#menu-title');
+        function openNode() {
+            nav.openNode(menuNode.value);
+        }
+        function closeNode() {
+            nav.closeNode(menuNode.value);
+        }
+        function toggleNode() {
+            nav.toggleNode(menuNode.value);
+        }
+    </script>
+</body>
+</html>
