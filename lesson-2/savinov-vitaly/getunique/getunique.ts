@@ -8,20 +8,14 @@ type ns = number | string;
 
 function getUnique(...args: ns[]): ns[] {
   let retArr: ns[] = [];
-    
-  for (let i=0; i < args.length; i++) {
-     if ( retArr.indexOf(args[i]) === -1 ) {
-      retArr.push(args[i]);
-     }
-  }
+  
+  args.forEach( (item) => {
+     if ( retArr.indexOf(item) === -1 ) retArr.push(item);
+  } );
   
   return retArr;
 }
 
-function uniq(): string {
-  let result: ns[] = [];
-  
-  result = getUnique( 22, 34, 65, 567, 45, 34, 567, 34, 22, 689, 65 );
-
-  return result.join(' ');
-}
+console.log( getUnique(1,2,3,4,5,6,1,2,3,4,5,6,3,4,5,3,4,5,6) );
+console.log( getUnique(22,34,14,5,6,14,22,34,43,56,66,34,44,56) );
+console.log( getUnique("Гога","Вова","Петя","Федя","Гога","Гоша","Георгий Иванович","Вова") );
