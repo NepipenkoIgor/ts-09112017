@@ -8,4 +8,4 @@ export const getUnique = (...arr: primitive[]): primitive[] => {
 
     return res;
   }, []);
-}
+};
