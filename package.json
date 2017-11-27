@@ -48,8 +48,8 @@
     "webpack-dev-server": "^2.9.4"
   },
   "nyc": {
-    "exclude": [
-      "lesson-3/**/*.spec.ts"
+    "extension": [
+      ".ts"
     ],
     "extension": [
       ".ts"

@@ -10,7 +10,7 @@ const PERIOD: number = 40;
 
 function throttle(callback: (...rest: any[]) => any, ms: number): (...rest: any[]) => void {
 
-  let timeout: number = null;
+  let timeout = null;
   let args: any[] = null;
   let context: any = null;
 
@@ -26,8 +26,8 @@ function throttle(callback: (...rest: any[]) => any, ms: number): (...rest: any[
         context = null;
       }, ms);
     }
-  }
-};
+  };
+}
 
 class Slider {
   private _target: HTMLElement;
@@ -37,10 +37,10 @@ class Slider {
   private _minLeft: number;
   private _maxRight: number;
 
-  private _slider_dx: number;
-  private _slider_width: number;
+  private _sliderDx: number;
+  private _sliderWidth: number;
 
-  constructor(target: HTMLElement) {
+  public constructor(target: HTMLElement) {
     this._target = target;
 
     /*
@@ -91,6 +91,7 @@ class Slider {
     this._slider = document.createElement('div') as HTMLElement;
     this._slider.className = SLIDER_CLASS;
 
+    // А какой тип тут должен быть?
     const style = this._slider.style;
     style.position = 'absolute';
     style.height = `${SLIDER_HEIGHT}px;`;
@@ -113,7 +114,7 @@ class Slider {
 
     const { right } = this._slider.getBoundingClientRect();
 
-    this._slider_dx = event.clientX - right;
+    this._sliderDx = event.clientX - right;
 
 
     try {
@@ -140,7 +141,7 @@ class Slider {
   }
 
   private _onMouseMove(event: MouseEvent): boolean {
-    let absX: number = event.clientX - this._slider_dx;
+    let absX: number = event.clientX - this._sliderDx;
 
     if (absX < this._minLeft) {
       absX = this._minLeft;
@@ -158,7 +159,7 @@ class Slider {
     }
     return false;
   }
-};
+}
 
 
 window.onload = () => {
