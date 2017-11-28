@@ -70,7 +70,7 @@ class Slider {
     this._lead = document.createElement('div') as HTMLElement;
     this._lead.className = LEAD_CLASS;
 
-    const style = this._lead.style;
+    const style: CSSStyleDeclaration = this._lead.style as CSSStyleDeclaration;
     style.position = 'relative';
     style.height = `${LEAD_HEIGT}px`;
     style.width = '100%';
@@ -91,8 +91,7 @@ class Slider {
     this._slider = document.createElement('div') as HTMLElement;
     this._slider.className = SLIDER_CLASS;
 
-    // А какой тип тут должен быть?
-    const style = this._slider.style;
+    const style: CSSStyleDeclaration = this._slider.style as CSSStyleDeclaration;
     style.position = 'absolute';
     style.height = `${SLIDER_HEIGHT}px;`;
     style.width = `${SLIDER_WIDTH}px`;
