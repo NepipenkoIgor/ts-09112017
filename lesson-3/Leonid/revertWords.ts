@@ -1,8 +1,8 @@
 const rLetter: RegExp = /[a-zA-Zа-яёА-ЯЁ]/;
 
-const revertCharsinWord = (word: string): string => {
+const revertCharsinWord: (word: string) => string = (word: string): string => {
   const chars: string[] = word.split('');
-  const revertedChars = chars
+  const revertedChars: string[] = chars
     .filter((char: string): boolean =>
       rLetter.test(char)).reverse();
 
@@ -15,4 +15,5 @@ const revertCharsinWord = (word: string): string => {
   ).join('');
 };
 
-export const revertWords = (str: string): string => str.split(/\s/).map(revertCharsinWord).join(' ');
+export const revertWords: (str: string) => string
+  = (str: string): string => str.split(/\s/).map(revertCharsinWord).join(' ');

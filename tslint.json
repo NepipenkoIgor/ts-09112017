@@ -1,15 +1,7 @@
 {
     "jsRules": {
       "class-name": true,
-      "no-console": [
-        true,
-        "log",
-        "debug",
-        "info",
-        "time",
-        "timeEnd",
-        "trace"
-      ],
+      "no-console": true,
       "no-debugger": true,
       "no-arg": true,
       "no-invalid-this": true,
@@ -30,7 +22,7 @@
       ],
       "max-line-length": [
         true,
-        120
+        100
       ],
       "no-consecutive-blank-lines": [
         true,
